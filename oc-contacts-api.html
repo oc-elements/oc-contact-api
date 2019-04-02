@@ -1,0 +1,41 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../oc-core-utils/oc-core-utils.html">
+
+<dom-module id="oc-contacts-api">>
+    <template>
+        <iron-ajax id="getUserContacts"></iron-ajax>
+        <iron-ajax id="addUserContact"></iron-ajax>
+		<iron-ajax id="removeOrganisationContact"></iron-ajax>
+    </template>
+
+    <script>
+        /**
+         * `oc-contacts-api`
+         * Ordercloud API calls for contacts endpoint
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class OcContactsApi extends Ordercloud.ApiMixin(Polymer.Element) {
+            static get is() { return 'oc-contacts-api'; }
+            static get properties() {};
+
+            /**
+             * Remove a contact from organisation
+             *
+             * @return {Promise}
+             */
+            
+			removeOrganisationContact(organisationId) {
+				this.$.removeOrganisationContact.url = this._generateUrl('contacts/' + organisationId );
+				this.$.removeOrganisationContact.method = 'DELETE';
+				this.$.removeOrganisationContact.contentType = 'application/json';
+				return this._generateRequest(this.$.removeOrganisationContact);
+			}
+        }
+
+        window.customElements.define(OcContactsApi.is, OcContactsApi);
+    </script>
+</dom-module>
