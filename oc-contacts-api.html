@@ -28,8 +28,8 @@
              * @return {Promise}
              */
             
-			removeOrganisationContact(organisationId) {
-				this.$.removeOrganisationContact.url = this._generateUrl('contacts/' + organisationId );
+			removeOrganisationContact(contactId) {
+				this.$.removeOrganisationContact.url = this._generateUrl('contacts/' + contactId );
 				this.$.removeOrganisationContact.method = 'DELETE';
 				this.$.removeOrganisationContact.contentType = 'application/json';
 				return this._generateRequest(this.$.removeOrganisationContact);
@@ -39,3 +39,4 @@
         window.customElements.define(OcContactsApi.is, OcContactsApi);
     </script>
 </dom-module>
+
